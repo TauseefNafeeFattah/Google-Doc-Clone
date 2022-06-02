@@ -16,6 +16,7 @@ export default function EditDocs({database}){
     const [documentTitle, setDocumentTitle] = useState('')
     const [docsDesc, setDocsDesc] = useState('');
 
+    // navigate to home page
     const goHome = () => {
         navigate(`/`);
     }
@@ -23,6 +24,7 @@ export default function EditDocs({database}){
       setDocsDesc(value)
     }
 
+    // updates the document in the database
     useEffect(()=>{
       const updateDocsData = setTimeout(() =>{
         const document = doc(collectionRef, params.id);
@@ -37,6 +39,7 @@ export default function EditDocs({database}){
       return () => clearTimeout(updateDocsData)
     }, [docsDesc])
 
+    // gets the document data from the database
     const getData = () => {
         const document = doc(collectionRef, params.id)
         onSnapshot(document, (docs) => {
@@ -44,6 +47,8 @@ export default function EditDocs({database}){
             setDocsDesc(docs.data().docsDesc);
         })
     }
+
+    // deletes the document from the database
     const deleteData = () =>{
 
       deleteDoc(doc(database, "docsData", params.id)).then(

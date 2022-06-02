@@ -18,6 +18,7 @@ export default function Docs({database}){
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // adds the doc to the database
   const addData = () =>{
     addDoc(collectionRef,{
       title:title,
@@ -29,6 +30,7 @@ export default function Docs({database}){
         toast.error('Cannot Add Data', {autoClose: 2000})
     })
   }
+  // gets the documents from the database
   const getData = () =>{
     onSnapshot(collectionRef, (data) =>{
       setDocsData(data.docs.map((doc)=>{
@@ -37,9 +39,11 @@ export default function Docs({database}){
     })
   }
 
+  // navigate to a specific document
   const getID = (id) => {
       navigate(`/editDocs/${id}`);
   }
+  
   useEffect(() =>{
     if(isMounted.current){
       return;
