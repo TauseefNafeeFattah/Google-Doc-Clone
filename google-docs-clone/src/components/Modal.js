@@ -21,6 +21,7 @@ export default function ModalComponent({
     setTitle,
     addData
 }) {
+    // creates a dialogue box to create a new document with title
     const handleClose = () => setOpen(false);
 
     return (
